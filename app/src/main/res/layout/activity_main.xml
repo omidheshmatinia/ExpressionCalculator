@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e6e6e6">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView_main_fields"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:contentPadding="8dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="4dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:gravity="left"
+                android:layout_gravity="center"
+                android:text="@string/textview_hint"/>
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/editText_main_query"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edittext_main_expression_hint"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelText="Expression"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <com.github.omidheshmatinia.expressioncalculator.custom.RippleView
+        android:id="@+id/rippleView_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       />
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/textView_main_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:maxLines="2"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="#fff"
+        />
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/button_main_calc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:text="@string/button_calculate"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:layout_margin="16dp"
+        app:theme="@style/CustomButton"
+        app:elevation="5dp"/>
+</FrameLayout>

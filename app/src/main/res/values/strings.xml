@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ExpressionCalculator</string>
+    <string name="textview_hint">Please enter your desired Mathematical Expression in this field.\n* The only supported function is SQRT.\n* It is not case sensitive</string>
+    <string name="edittext_main_expression_hint">Please enter your expression</string>
+    <string name="button_calculate">Calculate</string>
+</resources>
