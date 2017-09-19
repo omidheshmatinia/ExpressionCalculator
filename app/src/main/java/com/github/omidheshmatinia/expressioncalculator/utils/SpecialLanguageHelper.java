@@ -1,5 +1,7 @@
 package com.github.omidheshmatinia.expressioncalculator.utils;
 
+import android.support.annotation.NonNull;
+
 /**
  * convert Arabic and Persian numbers to english numbers
  */
@@ -11,7 +13,7 @@ public class SpecialLanguageHelper {
      * convert all Arabic and Persian numbers to english numbers
      * @return expression in english number
      */
-    public static String makeItUniversal(String expression){
+    public static String makeItUniversal(@NonNull String expression){
         for(int i=0;i<universalNumbers.length;i++){
             expression = expression.replace(arabicNumbers[i],universalNumbers[i]);
         }

@@ -9,12 +9,15 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-
+/**
+ * Custom view with ripple effect on it
+ */
 public class RippleView extends View{
     private int duration = 800 ;
     private int radius = 0 ;
     private Paint paint = new Paint();
     private int color=Color.parseColor("#4CAF50");
+
     public RippleView(Context context) {
         super(context);
     }
@@ -27,18 +30,28 @@ public class RippleView extends View{
         super(context, attrs, defStyleAttr);
     }
 
+    /**
+     * Begin ripple animation
+     */
     public void beginRipple(){
         paint.setColor(color);
         int maxRadius = Math.max(getWidth(),getHeight());
         animateCircle(radius,maxRadius);
     }
 
+    /**
+     * hide view with ripple animation
+     */
     public void reverseRipple(){
         paint.setColor(color);
         int maxRadius = radius;
         animateCircle(maxRadius,0);
     }
 
+    /**
+     * Draw a circle on view in a period of time
+     * @param items size of beginning and end of the circle
+     */
     private void animateCircle(int... items){
         ValueAnimator anim=ValueAnimator.ofInt(items);
         anim.addUpdateListener(valueAnimator ->{

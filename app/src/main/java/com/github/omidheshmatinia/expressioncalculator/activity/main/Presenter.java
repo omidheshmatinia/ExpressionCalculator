@@ -4,17 +4,6 @@ package com.github.omidheshmatinia.expressioncalculator.activity.main;
 import android.view.View;
 import com.github.omidheshmatinia.expressioncalculator.utils.Calculator;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.schedulers.Schedulers;
-
-
 class Presenter implements Contract.Presenter {
 
     private final Contract.View view;

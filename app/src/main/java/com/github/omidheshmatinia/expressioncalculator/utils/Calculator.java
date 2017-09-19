@@ -1,24 +1,27 @@
 package com.github.omidheshmatinia.expressioncalculator.utils;
 
+import static com.github.omidheshmatinia.expressioncalculator.utils.CharacterHelper.isCharacter;
+import static com.github.omidheshmatinia.expressioncalculator.utils.CharacterHelper.isNumber;
+
 public class Calculator {
 
-    private int currentPosition = -1, currentChar;
+    private int currentPosition = -1, currentChar = -1;
     private String mainExpression;
     private String invalidText="";
 
     public double calculateExpression(String expression) throws RuntimeException{
         if(expression==null || expression.trim().length() == 0)
-            throw new ArithmeticException("Wrong mathematical expression. your expression is null or empty");
-        currentPosition = -1;
+            throw new RuntimeException("Wrong mathematical expression. your expression is null or empty");
         expression = expression.toLowerCase();
         expression = SpecialLanguageHelper.makeItUniversal(expression);
-        expression = expression.replaceAll(" ","");
-        expression = expression.replaceAll("\n","");
+        expression = expression.replace(" ","");
         mainExpression = expression;
-        return calc();
+        currentPosition = 0;
+        currentChar = mainExpression.length()>0 ? mainExpression.charAt(0) : -1;
+        return parseExpression();
     }
 
-    void nextChar() {
+    private void nextChar() {
         currentPosition++;
         if(currentPosition < mainExpression.length()) {
             currentChar = mainExpression.charAt(currentPosition);
@@ -27,61 +30,55 @@ public class Calculator {
         }
     }
 
-
-    private double calc() {
-        nextChar();
-        double x = parseExpression();
-        return x;
-    }
-
     private double parseExpression() {
-        double x = parseTerm();
+        double value = parseTerm();
         while(true) {
-            if      (goToNextIfCurrentIndexIsEqual('+')) x += parseTerm();
-            else if (goToNextIfCurrentIndexIsEqual('-')) x -= parseTerm();
-            else return x;
+            if      (goToNextIfCurrentIndexIsEqual('+')) value += parseTerm();
+            else if (goToNextIfCurrentIndexIsEqual('-')) value -= parseTerm();
+            else if (isCharacter((char)currentChar)) value = parseTerm();
+            else return value;
         }
     }
 
     private double parseTerm() {
-        double x = parseFactor();
+        double value = parseFactor();
         while (true){
-            if      (goToNextIfCurrentIndexIsEqual('*')) x *= parseFactor();
-            else if (goToNextIfCurrentIndexIsEqual('/')) x /= parseFactor();
-            else return x;
+            if      (goToNextIfCurrentIndexIsEqual('*')) value *= parseFactor();
+            else if (goToNextIfCurrentIndexIsEqual('/')) value /= parseFactor();
+            else return value;
         }
     }
 
-    double parseFactor() {
+    private double parseFactor() {
         if (goToNextIfCurrentIndexIsEqual('+')) return parseFactor();
         if (goToNextIfCurrentIndexIsEqual('-')) return -parseFactor();
-
-        double x;
+        double value;
         int startPos = currentPosition;
+        int endPos = currentPosition;
         if (goToNextIfCurrentIndexIsEqual('(')) {
-            x = parseExpression();
+            value = parseExpression();
             goToNextIfCurrentIndexIsEqual(')');
         } else if (isNumber((char)currentChar)) {
             while (isNumber((char)currentChar)) {
+                endPos++;
                 nextChar();
             }
-            x = Integer.parseInt(mainExpression.substring(startPos, currentPosition));
+            value = Integer.parseInt(mainExpression.substring(startPos, endPos));
         } else if (isCharacter((char)currentChar)) {
             while (isCharacter((char)currentChar)) {
                 invalidText+=(char)currentChar;
+                endPos++;
                 nextChar();
             }
-            String func = mainExpression.substring(startPos, this.currentPosition);
-            x = parseFactor();
-            if (func.equals("sqrt")) x = Math.sqrt(x);
+            String func = mainExpression.substring(startPos, endPos);
+            value = parseFactor();
+            if (func.equals("sqrt")) value = Math.sqrt(value);
             else throw new RuntimeException("Unknown function: " + func);
         } else {
             throw new RuntimeException("Unexpected: " + invalidText);
         }
 
-        if (goToNextIfCurrentIndexIsEqual('^')) x = Math.pow(x, parseFactor());
-
-        return x;
+        return value;
     }
 
 
@@ -91,14 +88,6 @@ public class Calculator {
             return true;
         }
         return false;
-    }
-
-    private boolean isCharacter(char c){
-        return (c >= 'a' && c <= 'z');
-    }
-
-    private boolean isNumber(char c) {
-        return (c>='0' && c<='9');
     }
 
 }
