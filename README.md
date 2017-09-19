@@ -1,5 +1,6 @@
 [![Twitter](https://img.shields.io/badge/Twitter-@Smartiiiiz-blue.svg?style=flat)](http://twitter.com/Smartiiiiz)
-![Platform](https://img.shields.io/badge/Platform-Android-green.svg) ![Minimum Android Sdk Version](https://img.shields.io/badge/min--sdk-14-yellowgreen.svg)
+![Platform](https://img.shields.io/badge/Platform-Android-green.svg)
+![Minimum Android Sdk Version](https://img.shields.io/badge/min--sdk-14-yellowgreen.svg)
 
 # Expression Calculator
 
@@ -18,6 +19,9 @@ calculate any mathematical expression and show its result.
 - RxJava2 used for button clicks callbacks
 - All functions have unit tests
 - Used jack to bring some of Java8 Functionality (Lambda) to improve readability
+
+## Todo
+- Write UI tests
 
 # Developed By
 
