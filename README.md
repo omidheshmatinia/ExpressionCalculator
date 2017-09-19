@@ -5,6 +5,10 @@
 
 calculate any mathematical expression and show its result.
 
+## ScreenShot
+
+<img src="/screenshots/screenshot1.gif"/>
+
 ## Supported functions
 - SQRT (not case sensitive)
 
