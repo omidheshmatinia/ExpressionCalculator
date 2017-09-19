@@ -13,6 +13,7 @@ calculate any mathematical expression and show its result.
 - For view binding, ButterKnife is used
 - RxJava2 used for button clicks callbacks
 - All functions have unit tests
+- Used jack to bring some of Java8 Functionality (Lambda) to improve readability
 
 # Developed By
 
