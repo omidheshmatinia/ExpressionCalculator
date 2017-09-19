@@ -1,6 +1,6 @@
 [![Twitter](https://img.shields.io/badge/Twitter-@Smartiiiiz-blue.svg?style=flat)](http://twitter.com/Smartiiiiz)
-![Platform](https://img.shields.io/badge/Platform-Android-green.svg)
-![Minimum Android Sdk Version](https://img.shields.io/badge/min--sdk-14-yellowgreen.svg)
+ ![Platform](https://img.shields.io/badge/Platform-Android-green.svg)
+ ![Minimum Android Sdk Version](https://img.shields.io/badge/min--sdk-14-yellowgreen.svg)
 
 # Expression Calculator
 
